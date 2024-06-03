@@ -5,11 +5,12 @@ import { UserContext } from "../context/UserContext";
 export default function Header() {
 
   //const [username, setUsername] = useState(null)
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
   const {userInfo, setUserInfo} = useContext(UserContext)
   const username = userInfo?.name;
 
   useEffect(() => {
-    fetch('http://localhost:3000/profile',{
+    fetch(`${apiBaseUrl}profile`,{
       credentials : 'include'
     }).then(response => {
       response.json().then(userInfo => {
@@ -20,7 +21,7 @@ export default function Header() {
   }, [])
 
   function signout() {
-    fetch('http://localhost:3000/signout',{
+    fetch(`${apiBaseUrl}signout`,{
       credentials: 'include',
       method: 'POST',
     })

@@ -10,8 +10,9 @@ export default function  PostPage() {
     const [post, setPost] = useState(null)
     const {userInfo} = useContext(UserContext)
     const [redirect, setRedirect] = useState(false)
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${id}`)
+        fetch(`${apiBaseUrl}posts/${id}`)
             .then(res => res.json())
             .then(postInfo => {
                 setPost(postInfo);

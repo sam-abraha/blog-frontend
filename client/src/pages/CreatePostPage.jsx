@@ -36,6 +36,7 @@ export default function CreatePostPage() {
     const [content, setContent] = useState('')
     const [redirect, setRedirect] = useState(false)
     const [files, setFiles] = useState('')
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     async function createPost(e) {
         e.preventDefault()
@@ -45,7 +46,7 @@ export default function CreatePostPage() {
         data.set('content', content)
         data.set('file',files[0]) // Grabs only the first file
 
-        await fetch("http://localhost:3000/posts", {
+        await fetch(`${apiBaseUrl}posts`, {
             method: 'POST',
             body : data,
             credentials : 'include',

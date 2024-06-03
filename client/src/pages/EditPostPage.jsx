@@ -10,9 +10,10 @@ export default function EditPostPage() {
     const [content, setContent] = useState('')
     const [redirect, setRedirect] = useState(false)
     const [files, setFiles] = useState(null)
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${id}`)
+        fetch(`${apiBaseUrl}${id}`)
             .then(res => res.json())
             .then(post => {
                 setTitle(post.title);
@@ -37,7 +38,7 @@ export default function EditPostPage() {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/posts/${id}`, {
+            const response = await fetch(`${apiBaseUrl}${id}`, {
                 method : 'PUT',
                 body : data,
                 credentials : 'include',

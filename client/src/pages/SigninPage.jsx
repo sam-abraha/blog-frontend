@@ -8,10 +8,11 @@ export default function SigninPage() {
     const [password, setPassword] = useState('')
     const [redirect, setRedirect] = useState(false)
     const {setUserInfo} = useContext(UserContext)
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     async function signin(e) {
         e.preventDefault()
-        const response = await fetch("http://localhost:3000/signin", {
+        const response = await fetch(`${apiBaseUrl}signin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }),

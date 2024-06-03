@@ -4,8 +4,9 @@ import { useEffect } from "react";
 
 export default function IndexPage() {
     const [posts,setPosts] = useState([]);
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
     useEffect(() => {
-      fetch('http://localhost:3000/posts').then(response => {
+      fetch(`${apiBaseUrl}posts`).then(response => {
         response.json().then(posts => {
           setPosts(posts);
         });

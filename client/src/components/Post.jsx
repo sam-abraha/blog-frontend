@@ -2,13 +2,15 @@ import { formatISO9075 } from 'date-fns'
 import { Link } from 'react-router-dom'
 
 export default function Post({ id, title, summary, cover, createdAt, author }) {
+
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
   return (
     <div className="mt-8 max-w-screen-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="md:flex">
         <div className="md:flex-shrink-0">
           <Link to={`/posts/${id}`}>
             <img
-              src={`http://localhost:3000/${cover}`}
+              src={`${apiBaseUrl}${cover}`}
               alt={title}
               className="h-48 w-full object-cover md:h-full md:w-48"
             />

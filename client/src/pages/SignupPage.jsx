@@ -4,10 +4,11 @@ export default function SignupPage() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
         async function signup(e) {
         e.preventDefault()
-        const response = await fetch("http://localhost:3000/signup", {
+        const response = await fetch(`${apiBaseUrl}signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
