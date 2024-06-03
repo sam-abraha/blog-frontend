@@ -4,7 +4,7 @@
   command = "npm install && npm run build"
 
 [start]
-  command = "npm run serve"
+  command = "serve -s dist"
 
 [static]
   root = "dist"
