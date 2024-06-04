@@ -24,7 +24,7 @@ export default function SignupPage() {
 
     return (
         <form className="block mt-24 max-w-md mx-auto text-center" onSubmit={signup}>
-        <h1 className="text-center text-lime-600 font-bold text-4xl mb-4">Sign in</h1>
+        <h1 className="text-center text-lime-600 font-bold text-4xl mb-4">Sign up</h1>
         <input 
         type="name" 
         placeholder="Name" 
@@ -38,7 +38,7 @@ export default function SignupPage() {
         value={password}
         onChange={e => setPassword(e.target.value)}/>
         <button className="block w-full p-4 border rounded-lg text-white bg-lime-600 hover:bg-lime-700 mt-4">
-            Sign in
+            Sign up
         </button>
     </form>
     )
