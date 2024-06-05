@@ -36,7 +36,7 @@ export default function  PostPage() {
 
     async function deletePost() {
         try {
-          const response = await fetch(`http://localhost:3000/posts/${id}`, {
+          const response = await fetch(`${apiBaseUrl}posts/${id}`, {
             method: 'DELETE',
             credentials: 'include',
           });
@@ -80,7 +80,7 @@ export default function  PostPage() {
                 <div className="mt-2 text-gray-500">{post.summary}</div>
             </div>
             <div className="mb-8">
-                <img className="w-full rounded-lg shadow-lg" src={`http://localhost:3000/${post.cover}`}></img>
+                <img className="w-full rounded-lg shadow-lg" src={`${apiBaseUrl}${post.cover}`}></img>
             </div>
             <div className="prose prose-lg max-w-none">
                 <div dangerouslySetInnerHTML={{__html:post.content}}></div>
