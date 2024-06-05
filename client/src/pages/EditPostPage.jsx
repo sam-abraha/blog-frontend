@@ -14,7 +14,7 @@ export default function EditPostPage() {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
-        fetch(`${apiBaseUrl}${id}`)
+        fetch(`${apiBaseUrl}posts/${id}`)
             .then(res => res.json())
             .then(post => {
                 setTitle(post.title);
@@ -39,7 +39,7 @@ export default function EditPostPage() {
         }
 
         try {
-            const response = await fetch(`${apiBaseUrl}${id}`, {
+            const response = await fetch(`${apiBaseUrl}posts/${id}`, {
                 method : 'PUT',
                 body : data,
                 credentials : 'include',
