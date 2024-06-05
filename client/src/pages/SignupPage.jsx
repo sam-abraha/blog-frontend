@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState } from "react"
+import { Navigate } from 'react-router-dom';
 
 export default function SignupPage() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [redirect, setRedirect] = useState(false)
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
         async function signup(e) {
@@ -15,10 +17,14 @@ export default function SignupPage() {
             body: JSON.stringify({ username, password })
           });
         if(response.ok) {
-            alert("Registration successful")
+            setRedirect(true)
         }else {
             alert("Registration failed")
         }
+    }
+
+    if(redirect) {
+        return <Navigate to={'/'} />
     }
 
 
