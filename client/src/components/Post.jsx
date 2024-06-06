@@ -11,7 +11,7 @@ export default function Post({ id, title, summary, cover, createdAt, author }) {
         <div className="md:flex-shrink-0">
           <Link to={`/posts/${id}`}>
             <img
-              src={`${apiBaseUrl}${cover}`}
+              src={`${cover}`}
               alt={title}
               className="h-48 w-full object-cover md:h-full md:w-48"
             />

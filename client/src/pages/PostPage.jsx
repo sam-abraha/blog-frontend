@@ -80,7 +80,7 @@ export default function  PostPage() {
                 <div className="mt-2 text-gray-500">{post.summary}</div>
             </div>
             <div className="mb-8">
-                <img className="w-full rounded-lg shadow-lg" src={`${apiBaseUrl}${post.cover}`}></img>
+                <img className="w-full rounded-lg shadow-lg" src={`${post.cover}`}></img>
             </div>
             <div className="prose prose-lg max-w-none">
                 <div dangerouslySetInnerHTML={{__html:post.content}}></div>
