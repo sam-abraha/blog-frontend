@@ -5,28 +5,47 @@ import { UserContext } from "../context/UserContext";
 
 export default function Header() {
 
-  //const [username, setUsername] = useState(null)
   const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
   const {userInfo, setUserInfo} = useContext(UserContext)
   const username = userInfo?.name;
-
+  
   useEffect(() => {
-    fetch(`${apiBaseUrl}profile`,{
-      credentials : 'include'
-    }).then(response => {
-      response.json().then(userInfo => {
-        //setUsername(userInfo.name)
-        setUserInfo(userInfo)
-      })
-    })
-  }, [])
+    async function fetchProfile() {
+      try {
+        const response = await fetch(`${apiBaseUrl}profile`, {
+          credentials: 'include',
+        });
 
-  function signout() {
-    fetch(`${apiBaseUrl}signout`,{
-      credentials: 'include',
-      method: 'POST',
-    })
-    setUserInfo(null)
+        if (response.ok) {
+          const userInfo = await response.json();
+          setUserInfo(userInfo);
+        } else {
+          setUserInfo(null);
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+        setUserInfo(null);
+      }
+    }
+
+    fetchProfile();
+  }, [apiBaseUrl, setUserInfo]);
+
+  async function signout() {
+    try {
+      const response = await fetch(`${apiBaseUrl}signout`, {
+        credentials: 'include',
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        setUserInfo(null);
+      } else {
+        console.error('Error signing out:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
   }
     return (
     <header className='flex justify-between mt-4 px-4'>
