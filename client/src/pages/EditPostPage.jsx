@@ -26,36 +26,44 @@ export default function EditPostPage() {
             });
     }, [id]);
 
-    async function updatePost(e)  {
-        e.preventDefault()
-
-        const data = new FormData()
-        data.append('title', title)
-        data.append('summary', summary)
-        data.append('content', content)
-
-        if(files && files[0]) {
-            data.append('file', files[0])
+    async function updatePost(e) {
+        e.preventDefault();
+      
+        const data = new FormData();
+        data.append('title', title);
+        data.append('summary', summary);
+        data.append('content', content);
+      
+        if (files && files[0]) {
+          data.append('file', files[0]);
         }
-
+      
+        // Log FormData entries for debugging
+        for (const [key, value] of data.entries()) {
+          if (key === 'file') {
+            console.log(`${key}: ${value.name}`);  // Log file name
+          } else {
+            console.log(`${key}: ${value}`);
+          }
+        }
+      
         try {
-            const response = await fetch(`${apiBaseUrl}posts/${id}`, {
-                method : 'PUT',
-                body : data,
-                credentials : 'include',
-            }
-            )
-            if(response.ok) {
-                setRedirect(true)
-            }else {
-                console.log('Error updating post :', response.statusText)
-            }
-
-        }catch(error) {
-            console.log('Error updating post :', error)
+          const response = await fetch(`${apiBaseUrl}posts/${id}`, {
+            method: 'PUT',
+            body: data,
+            credentials: 'include',
+          });
+      
+          if (response.ok) {
+            setRedirect(true);
+          } else {
+            console.log('Error updating post:', response.statusText, await response.json());
+          }
+        } catch (error) {
+          console.log('Error updating post:', error);
         }
-
-    }
+      }
+      
 
     if(redirect) {
         return <Navigate to={'/'}/>
