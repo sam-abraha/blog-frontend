@@ -79,6 +79,7 @@ export default function  PostPage() {
                 )}
                 <div className="mt-2 text-gray-500">{post.summary}</div>
             </div>
+            <div className=" mb-2 text-gray-600"><b>Image Credits</b>: {post.imgCredit}</div>
             <div className="mb-8">
                 <img className="w-full rounded-lg shadow-lg" src={`${post.cover}`}></img>
             </div>

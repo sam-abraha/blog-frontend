@@ -2,7 +2,7 @@ import React from 'react';
 import { formatISO9075 } from 'date-fns'
 import { Link } from 'react-router-dom'
 
-export default function Post({ id, title, summary, cover, createdAt, author }) {
+export default function Post({ id, title, summary, cover, createdAt, author}) {
 
   const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
   return (

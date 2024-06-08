@@ -10,6 +10,7 @@ export default function EditPostPage() {
     const [summary, setSummary] = useState('')
     const [content, setContent] = useState('')
     const [redirect, setRedirect] = useState(false)
+    const [imgCredit, setImgCredit] = useState('')
     const [files, setFiles] = useState(null)
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -20,6 +21,7 @@ export default function EditPostPage() {
                 setTitle(post.title);
                 setContent(post.content);
                 setSummary(post.summary);
+                setImgCredit(post.imgCredit)
             })
             .catch(error => {
                 console.error('Error fetching post:', error);
@@ -33,15 +35,15 @@ export default function EditPostPage() {
         data.append('title', title);
         data.append('summary', summary);
         data.append('content', content);
+        data.append('imgCredit', imgCredit)
       
         if (files && files[0]) {
           data.append('file', files[0]);
         }
       
-        // Log FormData entries for debugging
         for (const [key, value] of data.entries()) {
           if (key === 'file') {
-            console.log(`${key}: ${value.name}`);  // Log file name
+            console.log(`${key}: ${value.name}`);
           } else {
             console.log(`${key}: ${value}`);
           }
@@ -88,6 +90,13 @@ export default function EditPostPage() {
             <input 
                 type="file" 
                 onChange={e => setFiles(e.target.files)}
+                className="border rounded p-2"
+            />
+            <input 
+                type="text" 
+                value={imgCredit}
+                onChange={e => setImgCredit(e.target.value)}
+                placeholder="Image Credits" 
                 className="border rounded p-2"
             />
             <TextEditor onChange={setContent} value={content}/>
