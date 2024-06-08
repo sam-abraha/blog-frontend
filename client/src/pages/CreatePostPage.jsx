@@ -7,34 +7,12 @@ import { UserContext } from '../context/UserContext';
 import { Navigate } from 'react-router-dom';
 import TextEditor from '../components/TextEditor';
 
-
-const modules = {
-    toolbar: [
-        [{ 'header': '1'}, { 'header': '2'}, { 'font': [] }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }, { 'align': [] }],
-        [{ 'direction': 'rtl' }],
-        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-        [{ 'color': [] }, { 'background': [] }],
-        ['link', 'image', 'video'],
-        ['clean']
-    ]
-};
-
-const formats = [
-    'header', 'font', 'size',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image', 'video', 'color', 'background', 'align', 'direction', 'script',
-    'Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'Georgia', 'Palatino', 'Garamond', 'Bookman', 'Comic Sans MS', 'Trebuchet MS', 'Arial Black', 'Impact'
-];
-
 export default function CreatePostPage() {
     const [title, setTitle] = useState('')
     const [summary, setSummary] = useState('')
     const [content, setContent] = useState('')
     const [redirect, setRedirect] = useState(false)
+    const [imgCredit, setImgCredit] = useState('')
     const [files, setFiles] = useState('')
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -45,6 +23,7 @@ export default function CreatePostPage() {
         data.set('summary', summary)
         data.set('content', content)
         data.set('file',files[0]) // Grabs only the first file
+        data.set('imgCredit', imgCredit)
 
         await fetch(`${apiBaseUrl}posts`, {
             method: 'POST',
@@ -52,7 +31,6 @@ export default function CreatePostPage() {
             credentials : 'include',
         }).then(response => {
             if(response.ok) {
-                //alert('Post created successfully')
                 setRedirect(true)
             }else {
                 alert('Error creating post')
@@ -86,6 +64,13 @@ export default function CreatePostPage() {
             <input 
                 type="file" 
                 onChange={e => setFiles(e.target.files)}
+                className="border rounded p-2"
+            />
+            <input 
+                type="text"
+                value={imgCredit}
+                placeholder="Image Credits"
+                onChange={e => setImgCredit(e.target.value)}
                 className="border rounded p-2"
             />
             <TextEditor value={content} onChange={setContent}/>
