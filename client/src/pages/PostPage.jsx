@@ -24,7 +24,7 @@ export default function  PostPage() {
     }, [id])
 
     if (!post) {
-        // Loading Page in case post is null
+        // Loading Page in case post is null<
         return (
             <div className="flex flex-col items-center justify-center h-screen text-lime-600">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-lime-600 border-solid border-t-transparent"></div>
