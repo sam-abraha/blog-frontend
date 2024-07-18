@@ -33,7 +33,7 @@ export default function Header() {
 
   async function signout() {
     try {
-      const response = await fetch(`${apiBaseUrl}signout`, {
+      const response = await fetch(`${apiBaseUrl}auth/signout`, {
         credentials: 'include',
         method: 'POST',
       });

@@ -13,7 +13,7 @@ export default function SigninPage() {
 
     async function signin(e) {
         e.preventDefault()
-        const response = await fetch(`${apiBaseUrl}signin`, {
+        const response = await fetch(`${apiBaseUrl}auth/signin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }),

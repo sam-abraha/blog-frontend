@@ -11,7 +11,7 @@ export default function SignupPage() {
 
         async function signup(e) {
         e.preventDefault()
-        const response = await fetch(`${apiBaseUrl}signup`, {
+        const response = await fetch(`${apiBaseUrl}auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
